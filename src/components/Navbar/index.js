@@ -4,7 +4,7 @@ import "./style.css";
 
 const styles = {
   navB: {
-    fontFamily: "'Trade Winds', cursive"
+    fontFamily: "'Russo One', sans-serif"
   },
   imgB: {
     marginRight: "10px"
@@ -30,26 +30,48 @@ const styles = {
 }
 
 // Depending on the current path, this component sets the "active" className on the appropriate navigation link item
-function Navbar() {
+function Navbar(props) {
 
   const [result, setResult] = useState("")
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState([])
+  const [cities, setCities] = useState([])
 
   const handleInputChange = event => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setSearch(event.target.value)
     // this.setState({ search: event.target.value, results: [] });
   };
+  useEffect(() => {
+    if(localStorage.getItem('LScities') !== null) {
+      let savedCities = localStorage.getItem('LScities')
+      savedCities = JSON.parse(savedCities)
+      setCities(savedCities)
+      props.onSearch(savedCities)
+    }
+    else {
+      setCities([])
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('LScities', JSON.stringify(cities));
+    props.onSearch(cities)
+    // console.log(cities)
+  }, [cities])
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    // const results = players.filter(friend => friend.fullName.toUpperCase() === this.state.search.toUpperCase() || friend.lastName.toUpperCase() === this.state.search.toUpperCase() || friend.name.toUpperCase() === this.state.search.toUpperCase() )
-    // this.setState({ results: results });
+
+    setCities(localStorage.getItem('LScities'))
+    setCities(cities.concat(search))
+
+    localStorage.setItem('searchedCity', search);
   };
+  
   return (
     <nav className="navbar navbar-expand navbar-dark fixed-top scrolling-navbar font-weight-bolder">
       <div className="container">
-        <Link className="navbar-brand" to="/" style={styles.navB}><img src="https://raw.githubusercontent.com/diegolehyt/Portfolio-v2.0/master/images/logo.png" width="40px" height="40px" tabindex="-1" style={styles.imgB} alt="logo"/>Weather</Link>
+        <Link className="navbar-brand" to="/" style={styles.navB}><img src="https://raw.githubusercontent.com/diegolehyt/weather-react-app/master/images/logo.png" width="40px" height="40px" tabindex="-1" style={styles.imgB} alt="logo"/>Weather</Link>
 
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
           aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,11 +82,9 @@ function Navbar() {
 
           <ul className="navbar-nav mr-auto smooth-scroll">
             <li className="nav-item">
-              <Link className={
-                window.location.pathname === "/about"
-                  ? "nav-link act"
-                  : "nav-link"
-              } to="/about" data-offset="90">Today</Link>
+        
+              <h6 className="text-center text-white">{props.currentD}/{props.currentM}{" "}<i className="fas fa-calendar text-white" aria-hidden="true"></i></h6>
+              
             </li>
         
           </ul>

@@ -337,23 +337,24 @@ function Home() {
                     <h4 className="text-center">{weather}<img src={"HTTPS://openweathermap.org/img/wn/" + icon + ".png"}/></h4>
                     
                   </div>
-    
+                  
                 </div>
        
                 <div className="row text-black" style={{ marginTop: "20%" }}>
                   <div className="col-md-12 col-lg-12">
+                    
                     <div className="row">
 
                       <h4 className="text-left col-4">{wind}{" "}m/s{" "}<i className="fas fa-wind text-white" aria-hidden="true"></i></h4>
                       <h4 className="text-center col-4">{cityName},{" "}{country}{" "}<i className="fas fa-map-marker-alt text-white" aria-hidden="true"></i></h4>
                       <h4 className="text-right col-4">{humidity}%{" "}<i className="fas fa-water text-white" aria-hidden="true"></i></h4>
                     </div>
-                 
+                  
                   </div>
                   <div className="col-md-12 col-lg-12" style={{ marginTop: "5%" }}>
-                    <hr className="hr-light my-4 w-75 style-two" />
+                  
                     <div className="row">
-
+                      <hr className="hr-light my-4 w-75 style-two" />
                       <h5 className="text-left col-4">{currentD6}/{currentM}</h5>
                       <h5 className="text-center col-4">{desc6}<img src={"HTTPS://openweathermap.org/img/wn/" + icon6 + ".png"}/></h5>
                       <h5 className="text-right col-4"><span className="font-weight-bold">{tempMax6}°</span> / {temp6}°</h5>
@@ -376,12 +377,14 @@ function Home() {
                       <h5 className="text-left col-4">{currentD2}/{currentM}</h5>
                       <h5 className="text-center col-4">{desc2}<img src={"HTTPS://openweathermap.org/img/wn/" + icon2 + ".png"}/></h5>
                       <h5 className="text-right col-4"><span className="font-weight-bold">{tempMax2}°</span> / {temp2}°</h5>
+                      
                     </div>
                     <hr className="hr-light my-4 w-75 style-two" />
                   </div>
+                  
                   <div className="col-md-12 col-lg-12">
                     <div className="row">
-
+                      
                       <h5 className="text-left col-4">{currentD3}/{currentM}</h5>
                       <h5 className="text-center col-4">{desc3}<img src={"HTTPS://openweathermap.org/img/wn/" + icon3 + ".png"}/></h5>
                       <h5 className="text-right col-4"><span className="font-weight-bold">{tempMax3}°</span> / {temp3}°</h5>
